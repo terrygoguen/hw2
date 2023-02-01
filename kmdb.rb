@@ -99,6 +99,7 @@ Role.destroy_all
 # Do not use hard-coded foreign key IDs.
 # TODO!
 
+#studio
 puts "there are #{Studio.all.count} Studios in the database, Terry"
 
 warner_bros = Studio.new 
@@ -107,6 +108,7 @@ warner_bros.save
 
 puts "there are #{Studio.all.count} Studios in the database, Terry"
 
+#movie
 puts "there are #{Movie.all.count} Movies in the database, Terry"
 
 batman_begins = Movie.new
@@ -130,15 +132,141 @@ the_dark_knight_rises["rated"] = "PG-13"
 the_dark_knight_rises["studio_id"] = warner_bros["id"]
 the_dark_knight_rises.save
 
+puts "there are #{Movie.all.count} Movies in the database, Terry"
+
+#actor
+puts "there are #{Actor.all.count} Actors in the database, Terry"
+christian_bale = Actor.new 
+christian_bale["name"] = "Christian Bale"
+christian_bale.save 
+
+michael_caine = Actor.new 
+michael_caine["name"] = "Michael Caine"
+michael_caine.save 
+
+liam_neeson = Actor.new 
+liam_neeson["name"] = "Liam Neeson"
+liam_neeson.save 
+
+katie_holmes = Actor.new 
+katie_holmes["name"] = "Katie Holmes"
+katie_holmes.save 
+
+gary_oldman = Actor.new 
+gary_oldman["name"] = "Gary Oldman"
+gary_oldman.save 
+
+heath_ledger = Actor.new 
+heath_ledger["name"] = "Heath Ledger"
+heath_ledger.save 
+
+aaron_eckhart = Actor.new 
+aaron_eckhart["name"] = "Aaron Eckhart"
+aaron_eckhart.save 
+
+maggie_gyllenhaal = Actor.new 
+maggie_gyllenhaal["name"] = "Maggie Gyllenhal"
+maggie_gyllenhaal.save 
+
+tom_hardy = Actor.new 
+tom_hardy["name"] = "Tom Hardy"
+tom_hardy.save
+
+jo_gordon_levitt = Actor.new 
+jo_gordon_levitt["name"] = "Jo Gordon-Levitt"
+jo_gordon_levitt.save
+
+anne_hathaway = Actor.new 
+anne_hathaway["name"] = "Anne Hathaway"
+anne_hathaway.save
+puts "there are #{Actor.all.count} Actors in the database, Terry"
+
+#role
+puts "there are #{Role.all.count} Roles in the database, Terry"
+bruce_wayne = Role.new 
+bruce_wayne["movie_id"] = batman_begins["id"]
+bruce_wayne["actor_id"] = christian_bale["id"]
+bruce_wayne["character_name"] = "Bruce Wayne"
+bruce_wayne.save
+
+alfred = Role.new 
+alfred["movie_id"] = batman_begins["id"]
+alfred["actor_id"] = michael_caine["id"]
+alfred["character_name"] = "Alfred"
+alfred.save
+
+rasal_ghul = Role.new 
+rasal_ghul["movie_id"] = batman_begins["id"]
+rasal_ghul["actor_id"] = liam_neeson["id"]
+rasal_ghul["character_name"] = "Ra's Al Ghul"
+rasal_ghul.save
+
+rachel_dawes = Role.new 
+rachel_dawes["movie_id"] = batman_begins["id"]
+rachel_dawes["actor_id"] = katie_holmes["id"]
+rachel_dawes["character_name"] = "Rachel Dawes"
+rachel_dawes.save
+
+commish_gordon = Role.new 
+commish_gordon["movie_id"] = batman_begins["id"]
+commish_gordon["actor_id"] = gary_oldman["id"]
+commish_gordon["character_name"] = "Commissoner Gordon"
+commish_gordon.save
+
+the_joker = Role.new 
+the_joker["movie_id"] = the_dark_knight["id"]
+the_joker["actor_id"] = heath_ledger["id"]
+the_joker["character_name"] = "Joker"
+the_joker.save
+
+harvey_dent = Role.new 
+harvey_dent["movie_id"] = the_dark_knight["id"]
+harvey_dent["actor_id"] = aaron_eckhart["id"]
+harvey_dent["character_name"] = "Harvey Dent"
+harvey_dent.save
+
+bane = Role.new 
+bane["movie_id"] = the_dark_knight_rises["id"]
+bane["actor_id"] = tom_hardy["id"]
+bane["character_name"] = "Bane"
+bane.save
+
+john_blake = Role.new 
+john_blake["movie_id"] = the_dark_knight_rises["id"]
+john_blake["actor_id"] = jo_gordon_levitt["id"]
+john_blake["character_name"] = "John Blake"
+john_blake.save
+
+selena_kyle = Role.new 
+selena_kyle["movie_id"] = the_dark_knight_rises["id"]
+selena_kyle["actor_id"] = anne_hathaway["id"]
+selena_kyle["character_name"] = "Selena Kyle"
+selena_kyle.save
+
+puts "there are #{Role.all.count} Roles in the database, Terry"
+
+
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
-puts "there are #{Movie.all.count} Movies in the database, Terry"
-
-
 
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
+# set a variable to query/run through 
+
+movies = Movie.where({"studio_id" => warner_bros["id"]})
+
+for movie in movies
+    title = movie["title"]
+    year_released = movie["year_released"]
+    rated = movie["rated"]
+    
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+
+    studio_name = studio["name"]
+
+    puts "#{title}    #{year_released}     #{rated}     #{studio_name}"
+end
 
 # Prints a header for the cast output
 puts ""
