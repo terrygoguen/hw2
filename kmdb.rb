@@ -75,6 +75,8 @@ Actor.destroy_all
 Studio.destroy_all
 Role.destroy_all
 
+## ------------------------------------------------
+
 # Generate models and tables, according to the domain model.
 # TODO!
 
@@ -86,18 +88,41 @@ Role.destroy_all
 #2. in the db/migrate file, add relevant columns matching our domain model
 # complete 
 
+# 3. in terminal, execute the migration file
+# rails db:migrate
 
+# DONE
 
-
+## ------------------------------------------------
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
 
+puts "there are #{Studio.all.count} Studios in the database, Terry"
+
+warner_bros = Studio.new 
+warner_bros["name"] = "Warner Bros"
+warner_bros.save
+
+puts "there are #{Studio.all.count} Studios in the database, Terry"
+
+puts "there are #{Movie.all.count} Movies in the database, Terry"
+
+batman_begins = Movie.new
+batman_begins["title"] = "Batman Begins"
+batman_begins["year_released"] = "2005"
+batman_begins["rated"] = "PG-13"
+batman_begins["studio_id"] = warner_bros["id"]
+batman_begins.save
+
+
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
-puts ""
+puts "there are #{Movie.all.count} Movies in the database, Terry"
+
+
 
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
