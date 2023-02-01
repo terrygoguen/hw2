@@ -84,7 +84,7 @@ Role.destroy_all
 # complete
 
 #2. in the db/migrate file, add relevant columns matching our domain model
-#_____complete?______
+# complete 
 
 
 
