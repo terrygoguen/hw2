@@ -100,16 +100,16 @@ Role.destroy_all
 # TODO!
 
 #studio
-puts "there are #{Studio.all.count} Studios in the database, Terry"
+# puts "there are #{Studio.all.count} Studios in the database, Terry"
 
 warner_bros = Studio.new 
 warner_bros["name"] = "Warner Bros"
 warner_bros.save
 
-puts "there are #{Studio.all.count} Studios in the database, Terry"
+# puts "there are #{Studio.all.count} Studios in the database, Terry"
 
 #movie
-puts "there are #{Movie.all.count} Movies in the database, Terry"
+# puts "there are #{Movie.all.count} Movies in the database, Terry"
 
 batman_begins = Movie.new
 batman_begins["title"] = "Batman Begins"
@@ -132,10 +132,10 @@ the_dark_knight_rises["rated"] = "PG-13"
 the_dark_knight_rises["studio_id"] = warner_bros["id"]
 the_dark_knight_rises.save
 
-puts "there are #{Movie.all.count} Movies in the database, Terry"
+# puts "there are #{Movie.all.count} Movies in the database, Terry"
 
 #actor
-puts "there are #{Actor.all.count} Actors in the database, Terry"
+# puts "there are #{Actor.all.count} Actors in the database, Terry"
 christian_bale = Actor.new 
 christian_bale["name"] = "Christian Bale"
 christian_bale.save 
@@ -179,19 +179,37 @@ jo_gordon_levitt.save
 anne_hathaway = Actor.new 
 anne_hathaway["name"] = "Anne Hathaway"
 anne_hathaway.save
-puts "there are #{Actor.all.count} Actors in the database, Terry"
+# puts "there are #{Actor.all.count} Actors in the database, Terry"
 
 #role
-puts "there are #{Role.all.count} Roles in the database, Terry"
+# puts "there are #{Role.all.count} Roles in the database, Terry"
 bruce_wayne = Role.new 
 bruce_wayne["movie_id"] = batman_begins["id"]
 bruce_wayne["actor_id"] = christian_bale["id"]
 bruce_wayne["character_name"] = "Bruce Wayne"
 bruce_wayne.save
 
+bruce_wayne = Role.new 
+bruce_wayne["movie_id"] = the_dark_knight["id"]
+bruce_wayne["actor_id"] = christian_bale["id"]
+bruce_wayne["character_name"] = "Bruce Wayne"
+bruce_wayne.save
+
+bruce_wayne = Role.new 
+bruce_wayne["movie_id"] = the_dark_knight_rises["id"]
+bruce_wayne["actor_id"] = christian_bale["id"]
+bruce_wayne["character_name"] = "Bruce Wayne"
+bruce_wayne.save
+
 alfred = Role.new 
 alfred["movie_id"] = batman_begins["id"]
-alfred["actor_id"] = michael_caine["id"]
+alfred["actor_id"] = michael_caine["id"] 
+alfred["character_name"] = "Alfred"
+alfred.save
+
+alfred = Role.new 
+alfred["movie_id"] = the_dark_knight["id"]
+alfred["actor_id"] = michael_caine["id"] 
 alfred["character_name"] = "Alfred"
 alfred.save
 
@@ -203,12 +221,24 @@ rasal_ghul.save
 
 rachel_dawes = Role.new 
 rachel_dawes["movie_id"] = batman_begins["id"]
-rachel_dawes["actor_id"] = katie_holmes["id"]
+rachel_dawes["actor_id"] = katie_holmes["id"] 
+rachel_dawes["character_name"] = "Rachel Dawes"
+rachel_dawes.save
+
+rachel_dawes = Role.new 
+rachel_dawes["movie_id"] = batman_begins["id"]
+rachel_dawes["actor_id"] = maggie_gyllenhaal["id"] 
 rachel_dawes["character_name"] = "Rachel Dawes"
 rachel_dawes.save
 
 commish_gordon = Role.new 
 commish_gordon["movie_id"] = batman_begins["id"]
+commish_gordon["actor_id"] = gary_oldman["id"]
+commish_gordon["character_name"] = "Commissoner Gordon"
+commish_gordon.save
+
+commish_gordon = Role.new 
+commish_gordon["movie_id"] = the_dark_knight_rises["id"]
 commish_gordon["actor_id"] = gary_oldman["id"]
 commish_gordon["character_name"] = "Commissoner Gordon"
 commish_gordon.save
@@ -243,7 +273,7 @@ selena_kyle["actor_id"] = anne_hathaway["id"]
 selena_kyle["character_name"] = "Selena Kyle"
 selena_kyle.save
 
-puts "there are #{Role.all.count} Roles in the database, Terry"
+# puts "there are #{Role.all.count} Roles in the database, Terry"
 
 
 # Prints a header for the movies output
@@ -277,24 +307,22 @@ puts ""
 # TODO!
 
 # set a variable to query/run through 
-# roles = Role.all 
-# #loop it
-# for role in roles
+roles = Role.all.order("movie_id")
+#loop it
+for role in roles
     
-#     role_name = role["character_name"]
+    role_name = role["character_name"]
 
-#     actor = Actor.find_by({"id" => role["actor_id"]})
-#     actor_name = actor["name"]
+    actor = Actor.find_by({"id" => role["actor_id"]})
+    actor_name = actor["name"]
 
-#     movie = Movie.find_by({"id" => role["movie_id"]})
-#     movie_title = movie["title"]
+    movie = Movie.find_by({"id" => role["movie_id"]})
+    movie_title = movie["title"]
     
-#     puts "#{movie_title}      #{actor_name}      #{role_name}"
-# end
+    puts "#{movie_title}      #{actor_name}      #{role_name}"
+end
 
-
-for movie in movies
-    title = movie["title"]
-    movie_id = movie["id"]
-        
+# Dear grader, 
+# couldnt quite figure out how to sort by release year but this works for now. 
+# also curious on how to get the formatting to be neat. 
 
