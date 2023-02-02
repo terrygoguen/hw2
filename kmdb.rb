@@ -226,7 +226,7 @@ rachel_dawes["character_name"] = "Rachel Dawes"
 rachel_dawes.save
 
 rachel_dawes = Role.new 
-rachel_dawes["movie_id"] = batman_begins["id"]
+rachel_dawes["movie_id"] = the_dark_knight["id"]
 rachel_dawes["actor_id"] = maggie_gyllenhaal["id"] 
 rachel_dawes["character_name"] = "Rachel Dawes"
 rachel_dawes.save
@@ -323,6 +323,6 @@ for role in roles
 end
 
 # Dear grader, 
-# couldnt quite figure out how to sort by release year but this works for now. 
+# couldnt quite figure out how to sort by release year but this works for now, feel like that would be a better way to build it in the real world  
 # also curious on how to get the formatting to be neat. 
 
